@@ -1,0 +1,42 @@
+.navbar {
+  font-family: "Inter Tight", sans-serif;
+  color: white;
+  font-size: 25px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 0px;
+}
+.navbar__nickname {
+  font-size: 50px;
+  font-weight: 500;
+  width: 400px;
+  padding: 20px 0 50px 20px;
+  margin: 0;
+}
+.navbar__logo {
+  height: 150px;
+  width: 150px;
+  padding: 0;
+  /* margin not needed as div class "navbar__links" is not in use. */
+  /* margin: 0 auto auto; */
+}
+/* "navbar__links" html element not in use. */
+/* .navbar__links {
+    width: 400px;
+    padding: 20px 20px 50px; 0;
+    gap: 35px;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    justify-content: space-between;
+}
+.navbar__link {
+    padding: 0;
+    margin: 0;
+    font-weight: 400;
+    text-decoration: none;
+    color: white;
+} */

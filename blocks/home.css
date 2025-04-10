@@ -1,0 +1,16 @@
+.home {
+  font-family: "Inter Tight", sans-serif;
+  font-weight: 600;
+  font-size: 35px;
+  display: flex;
+  justify-content: center;
+  padding-top: 25px;
+}
+.home__page {
+}
+.home__page-welcome {
+  padding-left: 100px;
+  padding-right: 100px;
+  text-align: center;
+  max-width: 1500px;
+}
