@@ -19,11 +19,11 @@
   height: 150px;
   width: 150px;
   padding: 0;
-  /* margin not needed as div class "navbar__links" is not in use. */
-  /* margin: 0 auto auto; */
+  margin not needed as div class "navbar__links" is not in use. */
+  margin: 0 auto auto;
 }
 /* "navbar__links" html element not in use. */
-/* .navbar__links {
+.navbar__links {
     width: 400px;
     padding: 20px 20px 50px; 0;
     gap: 35px;
@@ -39,4 +39,4 @@
     font-weight: 400;
     text-decoration: none;
     color: white;
-} */
+}
