@@ -45,9 +45,10 @@
   .navbar__links {
     position: absolute;
     top: 0;
-    left: 0;
-    width: fit-content;
-    justify-content: center;
+    width: webkit-fill-available;
+    width: -moz-available;
+    width: fill-available;
+    margin-bottom: 15px;
   }
 
   .navbar__nickname {
