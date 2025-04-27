@@ -11,6 +11,7 @@
 .section__list {
     display: grid;
     grid-template-columns: repeat(3, auto);
+    justify-content: space-around;
     grid-template-rows: auto;
     align-items: center;
     list-style-type: none;
@@ -33,4 +34,10 @@
 .section__link-social-img {
     border-radius: 400px;
     width: 300px;
+}
+
+@media screen and (max-width: 950px) {
+    .section__list {
+        grid-template-columns: repeat(1, auto);
+    }
 }
