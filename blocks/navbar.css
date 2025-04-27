@@ -45,9 +45,8 @@
   .navbar__links {
     position: absolute;
     top: 0;
-    width: webkit-fill-available;
+    width: -webkit-fill-available;
     width: -moz-available;
-    width: fill-available;
     margin-bottom: 15px;
   }
 
