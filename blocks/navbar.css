@@ -19,7 +19,6 @@
   height: 150px;
   width: 150px;
   padding: 0;
-  margin not needed as div class "navbar__links" is not in use. */
   margin: 0 auto auto;
 }
 /* "navbar__links" html element not in use. */
@@ -47,23 +46,26 @@
     top: 0;
     width: -webkit-fill-available;
     width: -moz-available;
-    margin-bottom: 15px;
+    padding-bottom: 30px;
   }
 
   .navbar__nickname {
     font-size: 5vw;
     padding: 15px;
-    position: relative;;
+    position: absolute;
     text-align: center;
     margin: auto;
-    top: 50px;
+    top: 150px;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .navbar__logo {
     position: absolute;
     width: 15%;
     height: auto;
-    margin: auto;
-    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 60px;
   }
 }
