@@ -50,6 +50,7 @@
   }
 
   .navbar__nickname {
+    width: fit-content;
     font-size: 10vw;
     padding: 15px;
     position: absolute;
