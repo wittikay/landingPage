@@ -43,6 +43,12 @@ const socials = [
     imgSrc: "./images/Facebook_Logo_Primary.png",
     alt: "",
   },
+
+  {
+    url: "https://www.codewars.com/users/wittikay",
+    imgSrc:"./images/logo.svg",
+    alt: "",
+  },
 ];
 
 const renderProjects = () => {
@@ -58,7 +64,7 @@ const renderProjects = () => {
     const img = document.createElement("img");
     img.src = project.imgSrc;
     img.alt = project.alt;
-    img.className = "section__link-project-img";
+    img.className = "section__link-img section__link-project-img";
     projectElement.appendChild(img);
     projectContainer.appendChild(projectElement);
   });
@@ -77,7 +83,7 @@ const renderSocials = () => {
     const img = document.createElement("img");
     img.src = social.imgSrc;
     img.alt = social.alt;
-    img.className = "section__link-social-img";
+    img.className = "section__link-img section__link-social-img";
     socialElement.appendChild(img);
     socialContainer.appendChild(socialElement);
   });

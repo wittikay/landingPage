@@ -9,20 +9,28 @@
 }
 
 .section__list {
+    box-sizing: border-box;
+    max-width: 100%;
     display: grid;
     grid-template-columns: repeat(3, auto);
     justify-content: center;
     grid-template-rows: auto;
     align-items: center;
     list-style-type: none;
-    padding: 25px 0;
-    margin: 0;
-    gap: 100px
+    padding: 25px;
+    margin: 0 auto;
+    gap: 50px;
+    overflow: hidden;
 
+}
+
+.section__container {
+    padding: 0 20px;
 }
 
 .section__list-item {
     margin: 0 auto;
+    max-width: 100%;
 }
 .section__link-project-img {
     background-color: #d3d3d3;
@@ -31,16 +39,26 @@
     width: 100px;
     height: auto;
     margin: 50px 25px;
+    max-width: 100%;
+    object-fit: contain;
 }
 
 .section__link-social-img {
     width: 300px;
-    padding: 50px 0 50px;
+    margin: 50px 10px 50px 10px;
+    padding: 20px;
+    max-width: 100%;
 }
 
 @media screen and (max-width: 950px) {
     .section__list {
         grid-template-columns: repeat(1, auto);
+        gap: 25px;
     }
-    
+    .section__link-img {
+        width: 50vw;
+        height: auto;
+        margin: 0;
+        max-width: 100%;
+    }
 }
