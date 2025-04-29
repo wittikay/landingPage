@@ -19,12 +19,12 @@ const projects = [
 const socials = [
   {
     url: "https://soundcloud.com/wittikay",
-    imgSrc: "./images/soundcloud-logo-clouds-background-2789972142.jpg",
+    imgSrc: "./images/soundcloud.svg",
     alt: "The SoundCloud logo in front of orange clouds.",
   },
   {
     url: "https://github.com/wittikay",
-    imgSrc: "./images/github-mark.png",
+    imgSrc: "./images/github-mark.svg",
     alt: "GitHub's mascot cat illustrated as a simple logo.",
   },
   {
