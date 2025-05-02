@@ -32,8 +32,10 @@
     margin: 0 auto;
     max-width: 100%;
 }
+
 .section__link-project-img {
-    background-color: #d3d3d3;
+    cursor: pointer;
+    background-color: rgba(211, 211, 211, 0.8);
     padding: 50px;
     border-radius: 25px;
     width: 100px;
@@ -41,13 +43,20 @@
     margin: 50px 25px;
     max-width: 100%;
     object-fit: contain;
+    transition: all 0.3s ease-in-out;
 }
-
+.section__link-project-img:hover {
+    transform: scale(1.05);
+}
 .section__link-social-img {
     width: 300px;
     margin: 50px 10px 50px 10px;
     padding: 20px;
-    max-width: 100%;
+    max-width: 100%; 
+    transition: all 0.3s ease-in-out;
+}
+.section__link-social-img:hover {
+    transform: scale(1.05);
 }
 
 @media screen and (max-width: 950px) {
