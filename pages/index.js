@@ -1,17 +1,17 @@
 const projects = [
   {
     url: "https://wittikay.github.io/se_project_spots/",
-    imgSrc: "./images/spots.png",
+    imgSrc: "./images/spots.svg",
     alt: "",
   },
   {
     url: "https://wittikay.github.io/se_project_library_updated/",
-    imgSrc: "./images/library.png",
+    imgSrc: "./images/library.svg",
     alt: "",
   },
   {
     url: "https://wittikay.github.io/se_project_coffeeshop/",
-    imgSrc: "./images/coffee.png",
+    imgSrc: "./images/logo_coffeeshop_dark.svg",
     alt: "",
   },
 ];
@@ -46,7 +46,7 @@ const socials = [
 
   {
     url: "https://www.codewars.com/users/wittikay",
-    imgSrc:"./images/logo.svg",
+    imgSrc:"./images/codewars.svg",
     alt: "",
   },
 ];
