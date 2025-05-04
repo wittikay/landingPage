@@ -46,7 +46,7 @@ const socials = [
 
   {
     url: "https://www.codewars.com/users/wittikay",
-    imgSrc:"./images/codewars.svg",
+    imgSrc: "./images/codewars.svg",
     alt: "",
   },
 ];

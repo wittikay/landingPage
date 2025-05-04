@@ -1,73 +1,72 @@
 .section__title {
-    max-width: 1100px;
-    border-bottom-style: inset;
-    border-width: 5px;
-    text-align: center;
-    font-size: 80px;
-    margin: 0 auto 10px auto;
-    padding: 25px 0;
+  max-width: 1100px;
+  border-bottom-style: inset;
+  border-width: 5px;
+  text-align: center;
+  font-size: 80px;
+  margin: 0 auto 10px auto;
+  padding: 25px 0;
 }
 
 .section__list {
-    box-sizing: border-box;
-    max-width: 100%;
-    display: grid;
-    grid-template-columns: repeat(3, auto);
-    justify-content: center;
-    grid-template-rows: auto;
-    align-items: center;
-    list-style-type: none;
-    padding: 25px;
-    margin: 0 auto;
-    gap: 50px;
-    overflow: hidden;
-
+  box-sizing: border-box;
+  max-width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  justify-content: center;
+  grid-template-rows: auto;
+  align-items: center;
+  list-style-type: none;
+  padding: 25px;
+  margin: 0 auto;
+  gap: 50px;
+  overflow: hidden;
 }
 
 .section__container {
-    padding: 0 20px;
+  padding: 0 20px;
 }
 
 .section__list-item {
-    margin: 0 auto;
-    max-width: 100%;
+  margin: 0 auto;
+  max-width: 100%;
 }
 
 .section__link-project-img {
-    cursor: pointer;
-    background-color: rgba(211, 211, 211, 0.8);
-    padding: 50px;
-    border-radius: 25px;
-    width: 100px;
-    height: auto;
-    margin: 50px 25px;
-    max-width: 100%;
-    object-fit: contain;
-    transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  background-color: rgba(211, 211, 211, 0.8);
+  padding: 50px;
+  border-radius: 25px;
+  width: 100px;
+  height: auto;
+  margin: 50px 25px;
+  max-width: 100%;
+  object-fit: contain;
+  transition: all 0.3s ease-in-out;
 }
 .section__link-project-img:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 .section__link-social-img {
-    width: 300px;
-    margin: 50px 10px 50px 10px;
-    padding: 20px;
-    max-width: 100%; 
-    transition: all 0.3s ease-in-out;
+  width: 300px;
+  margin: 50px 10px 50px 10px;
+  padding: 20px;
+  max-width: 100%;
+  transition: all 0.3s ease-in-out;
 }
 .section__link-social-img:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 
 @media screen and (max-width: 950px) {
-    .section__list {
-        grid-template-columns: repeat(1, auto);
-        gap: 25px;
-    }
-    .section__link-img {
-        width: 50vw;
-        height: auto;
-        margin: 0;
-        max-width: 100%;
-    }
+  .section__list {
+    grid-template-columns: repeat(1, auto);
+    gap: 25px;
+  }
+  .section__link-img {
+    width: 50vw;
+    height: auto;
+    margin: 0;
+    max-width: 100%;
+  }
 }
