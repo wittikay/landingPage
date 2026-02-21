@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wittikay Logo ASCII 3D</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: transparent;
+        color: #fff;
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+        zoom: 0.65;
+      }
+      .wrap {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        width: 100%;
+      }
+      pre {
+        font-family: "Courier New", monospace;
+        font-size: 8px;
+        line-height: 8px;
+        margin: 0;
+        white-space: pre;
+        user-select: none;
+        padding: 4px;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <pre id="ascii"></pre>
+    </div>
+
+    <script>
+      const img = new Image();
+      img.src = "./images/wittikay-logo.png";
+
+      const chars = " .:-=+*#%@";
+      const asciiEl = document.getElementById("ascii");
+
+      let sampleCols = 140;
+      const zScale = 40;
+      const perspective = 120;
+      const frameScale = 0.85;
+
+      let points = [];
+      let width = 0;
+      let height = 0;
+
+      function buildPoints() {
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+
+        width = sampleCols;
+        const scale = width / img.width;
+        height = Math.round(img.height * scale);
+
+        canvas.width = width;
+        canvas.height = height;
+        ctx.drawImage(img, 0, 0, width, height);
+
+        const data = ctx.getImageData(0, 0, width, height).data;
+        points = [];
+
+        for (let y = 0; y < height; y++) {
+          for (let x = 0; x < width; x++) {
+            const idx = (y * width + x) * 4;
+            const r = data[idx];
+            const g = data[idx + 1];
+            const b = data[idx + 2];
+            const a = data[idx + 3];
+            if (a < 50) continue;
+            const lum = (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255;
+            const charIndex = Math.floor(lum * (chars.length - 1));
+            const z = (1 - lum) * zScale;
+            points.push({ x, y, z, c: chars[charIndex] });
+          }
+        }
+      }
+
+      const resolutionScale = 2.5;
+
+      function updateSize() {
+        const preStyle = getComputedStyle(asciiEl);
+        const fontSize = parseFloat(preStyle.fontSize);
+        const lineHeight = parseFloat(preStyle.lineHeight);
+        const padding = parseFloat(preStyle.paddingLeft) * 2;
+        const availW = Math.max(0, window.innerWidth - padding);
+        const availH = Math.max(0, window.innerHeight - padding);
+        const cols = Math.max(30, Math.floor((availW / fontSize) * resolutionScale));
+        const rows = Math.max(15, Math.floor((availH / lineHeight) * resolutionScale));
+        sampleCols = cols;
+        width = cols;
+        height = rows;
+        buildPoints();
+      }
+
+      function render(time) {
+        const t = time * 0.0004;
+        const cone = 0.15;
+        const angleX = Math.sin(t) * cone;
+        const angleY = Math.cos(t) * cone;
+        const cosX = Math.cos(angleX);
+        const sinX = Math.sin(angleX);
+        const cosY = Math.cos(angleY);
+        const sinY = Math.sin(angleY);
+
+        const outW = width;
+        const outH = height;
+        const zBuffer = new Array(outW * outH).fill(-Infinity);
+        const out = new Array(outW * outH).fill(" ");
+
+        for (const p of points) {
+          const cx = p.x - outW / 2;
+          const cy = p.y - outH / 2;
+          const cz = p.z;
+
+          // rotate around X then Y for a conical motion
+          let y = cy * cosX - cz * sinX;
+          let z = cy * sinX + cz * cosX;
+          let x = cx * cosY + z * sinY;
+          z = -cx * sinY + z * cosY;
+
+          const scale = (perspective / (perspective + z)) * frameScale;
+          const sx = Math.round(x * scale + outW / 2);
+          const sy = Math.round(y * scale + outH / 2);
+
+          if (sx < 0 || sx >= outW || sy < 0 || sy >= outH) continue;
+          const idx = sy * outW + sx;
+          if (z > zBuffer[idx]) {
+            zBuffer[idx] = z;
+            out[idx] = p.c;
+          }
+        }
+
+        let lines = [];
+        for (let y = 0; y < outH; y++) {
+          lines.push(out.slice(y * outW, y * outW + outW).join(""));
+        }
+        asciiEl.textContent = lines.join("\n");
+        requestAnimationFrame(render);
+      }
+
+      img.onload = () => {
+        updateSize();
+        requestAnimationFrame(render);
+      };
+
+      window.addEventListener("resize", () => {
+        updateSize();
+      });
+    </script>
+  </body>
+</html>
