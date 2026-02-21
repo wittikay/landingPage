@@ -4,7 +4,7 @@
 ### Purpose: To consolidate projects and social links into one 'master' page.
 
 NEW UI:
-![alt text](wittikays%20landing%20page.pdf)
+![alt text](images/wittikays-landing-page.png)
 
 OLD UI:
 ![alt text](image.png)
