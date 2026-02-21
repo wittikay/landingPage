@@ -4,20 +4,36 @@
   font-size: 35px;
   display: flex;
   justify-content: center;
-  padding-top: 25px;
+  padding-top: 60px;
+  padding-bottom: 60px;
 }
 .home__page {
+  text-align: center;
 }
 .home__page-welcome {
   padding-left: 100px;
   padding-right: 100px;
-  text-align: center;
-  max-width: 1500px;
+  display: inline-block;
+  height: 7em;
+  object-fit: contain;
 }
 
 @media screen and (max-width: 950px) {
   .home__page-welcome {
-    font-size: 5vw;
     padding: 170px 25px 25px 25px;
+    height: 4em;
+    margin-top: 80px;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .home {
+    padding-top: 30px;
+  }
+
+  .home__page-welcome {
+    padding: 40px 20px 20px;
+    height: 4em;
+    margin-top: 30px;
   }
 }
