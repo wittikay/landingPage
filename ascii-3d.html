@@ -24,8 +24,10 @@
         margin: 0;
         white-space: pre;
         user-select: none;
-        padding: 4px;
+        padding: 50px;
         box-sizing: border-box;
+        cursor: grab;
+        touch-action: none;
       }
     </style></head><body><div class=wrap><pre id=ascii></pre></div><script>
       const img = new Image();
@@ -33,11 +35,23 @@
 
       const chars = " .:-=+*#%@";
       const asciiEl = document.getElementById("ascii");
+      let targetX = 0;
+      let targetY = 0;
+      let currentX = 0;
+      let currentY = 0;
+      let isDragging = false;
+      let lastX = 0;
+      let lastY = 0;
+      const dragSpeed = 0.005;
+      const followStrength = 0.12;
+      const maxAngle = 0.35;
+      let lastTime = 0;
+      let lastCursorTime = 0;
 
       let sampleCols = 140;
       const zScale = 40;
       const perspective = 120;
-      const frameScale = 0.85;
+      let frameScale = 0.55;
 
       let points = [];
       let width = 0;
@@ -76,7 +90,18 @@
 
       const resolutionScale = 2.5;
 
+      function updateFrameScale() {
+        if (window.innerWidth <= 650) {
+          frameScale = 0.75;
+        } else if (window.innerWidth <= 950) {
+          frameScale = 0.65;
+        } else {
+          frameScale = 0.55;
+        }
+      }
+
       function updateSize() {
+        updateFrameScale();
         const preStyle = getComputedStyle(asciiEl);
         const fontSize = parseFloat(preStyle.fontSize);
         const lineHeight = parseFloat(preStyle.lineHeight);
@@ -92,10 +117,23 @@
       }
 
       function render(time) {
-        const t = time * 0.0004;
-        const cone = 0.15;
-        const angleX = Math.sin(t) * cone;
-        const angleY = Math.cos(t) * cone;
+        const dt = lastTime ? (time - lastTime) / 1000 : 0;
+        lastTime = time;
+        if (isDragging) {
+          currentX = targetX;
+          currentY = targetY;
+        } else {
+          const decay = Math.exp(-dt / 5);
+          targetX *= decay;
+          targetY *= decay;
+          currentX += (targetX - currentX) * followStrength;
+          currentY += (targetY - currentY) * followStrength;
+        }
+        const idleDelay = 2;
+        const idleAngle = Math.sin(time * 0.0003) * 0.12;
+        const useIdle = !isDragging && lastCursorTime && (time - lastCursorTime) / 1000 > idleDelay;
+        const angleX = currentY;
+        const angleY = currentX + (useIdle ? idleAngle : 0);
         const cosX = Math.cos(angleX);
         const sinX = Math.sin(angleX);
         const cosY = Math.cos(angleY);
@@ -136,6 +174,68 @@
         asciiEl.textContent = lines.join("\n");
         requestAnimationFrame(render);
       }
+
+      window.addEventListener("pointermove", (event) => {
+        if (isDragging) return;
+        lastCursorTime = event.timeStamp;
+        const nx = event.clientX / window.innerWidth;
+        const ny = event.clientY / window.innerHeight;
+        const cx = (nx - 0.5) * 2;
+        const cy = (ny - 0.5) * 2;
+        targetX = Math.max(-maxAngle, Math.min(maxAngle, -cx * maxAngle));
+        targetY = Math.max(-maxAngle, Math.min(maxAngle, cy * maxAngle));
+      });
+
+      window.addEventListener("message", (event) => {
+        const data = event.data || {};
+        if (data.type === "cursor") {
+          if (isDragging) return;
+          const cx = (data.x - 0.5) * 2;
+          const cy = (data.y - 0.5) * 2;
+          targetX = Math.max(-maxAngle, Math.min(maxAngle, -cx * maxAngle));
+          targetY = Math.max(-maxAngle, Math.min(maxAngle, cy * maxAngle));
+        }
+        if (data.type === "dragStart") {
+          isDragging = true;
+        }
+        if (data.type === "drag") {
+          targetX += data.dx * dragSpeed;
+          targetY += data.dy * dragSpeed;
+        }
+        if (data.type === "dragEnd") {
+          isDragging = false;
+        }
+      });
+
+      asciiEl.addEventListener("pointerdown", (event) => {
+        isDragging = true;
+        lastX = event.clientX;
+        lastY = event.clientY;
+        targetX = currentX;
+        targetY = currentY;
+        asciiEl.setPointerCapture(event.pointerId);
+        event.preventDefault();
+      });
+
+      window.addEventListener("pointermove", (event) => {
+        if (!isDragging) return;
+        const dx = event.clientX - lastX;
+        const dy = event.clientY - lastY;
+        lastX = event.clientX;
+        lastY = event.clientY;
+        targetX += dx * dragSpeed;
+        targetY += dy * dragSpeed;
+        event.preventDefault();
+      });
+
+      window.addEventListener("pointerup", (event) => {
+        isDragging = false;
+        asciiEl.releasePointerCapture(event.pointerId);
+      });
+
+      window.addEventListener("pointercancel", () => {
+        isDragging = false;
+      });
 
       img.onload = () => {
         updateSize();
