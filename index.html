@@ -1,1 +1,125 @@
-<!DOCTYPE html><html lang=en><head><meta charset=UTF-8><meta name=viewport content="width=device-width, initial-scale=1.0"><title>wittikay's landing page</title><link rel=stylesheet href=./pages/index.css></head><body background=./images/background.jpeg><div class=page><div class=backgroundGradient><div class=ascii-bg aria-hidden=true><iframe src=./ascii-3d.html title="wittikay logo ascii background" loading=lazy></iframe></div><nav class=navbar><img src=./images/wittikay-name.png alt=wittikay class=navbar__nickname><div class=navbar__links><a class=navbar__link href=#projects><img src=./images/projects-name.png alt=Projects></a><a class=navbar__link href=#about><img src=./images/about-name.png alt=About></a><a class=navbar__link href=#contact><img src=./images/contact-name.png alt=Contact></a></div></nav><section class=home><div class=home__page><img src=./images/page-welcome-image.png alt="Welcome message" class=home__page-welcome></div></section></div><section class=projects><div class=section__container><img src=./images/projects-name.png alt=Projects class="section__title section__title--projects"><ul id=projects class=projects__list></ul></ul></div></section><section id=social class=social><div class=section__container><img src=./images/socials-name.png alt=Socials class=section__title><ul id=socials class=social__list></ul></ul></div></section></div><script src=./pages/index.js defer></script><script>const asciiFrame=document.querySelector('.ascii-bg iframe');let dragging=false,lastX=0,lastY=0;const send=(type,payload)=>{if(!asciiFrame||!asciiFrame.contentWindow)return;asciiFrame.contentWindow.postMessage({type,...payload},'*')};window.addEventListener('pointermove',e=>{const x=e.clientX/window.innerWidth,y=e.clientY/window.innerHeight;send('cursor',{x,y});if(dragging){const dx=e.clientX-lastX,dy=e.clientY-lastY;lastX=e.clientX;lastY=e.clientY;send('drag',{dx,dy})}});window.addEventListener('pointerdown',e=>{dragging=true;lastX=e.clientX;lastY=e.clientY;send('dragStart',{})});window.addEventListener('pointerup',()=>{if(!dragging)return;dragging=false;send('dragEnd',{})});window.addEventListener('pointercancel',()=>{if(!dragging)return;dragging=false;send('dragEnd',{})});</script></body></html>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#101719" />
+    <meta name="description" content="Wittikay's work and links." />
+    <title>wittikay</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://images.unsplash.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./pages/index.css" />
+  </head>
+  <body>
+    <header class="masthead">
+      <a class="wordmark" href="#home" aria-label="wittikay home">wittikay</a>
+      <nav class="navigation" aria-label="Main navigation">
+        <a href="#contact">Contact <span aria-hidden="true">↓</span></a>
+        <img class="masthead__logo" src="./images/wittikay-logo.png" alt="" />
+      </nav>
+    </header>
+
+    <main id="home">
+      <section class="hero" aria-labelledby="hero-title">
+        <img
+          class="hero__photo"
+          src="https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=2400&q=88"
+          alt="A city skyline at night, seen from a quiet street"
+          fetchpriority="high"
+        />
+        <div class="hero__shade"></div>
+        <div class="hero__content">
+          <h1 id="hero-title">These are my works.</h1>
+        </div>
+      </section>
+
+      <section class="works" id="works" aria-label="Works">
+        <div class="works__grid">
+          <a
+            class="work"
+            href="https://wittikay.github.io/se_project_spots/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <span class="work__image"
+              ><img src="./images/spots.svg" alt="" loading="lazy"
+            /></span>
+            <span class="work__name">Spots</span
+            ><span class="work__arrow" aria-hidden="true">↗</span>
+          </a>
+          <a
+            class="work"
+            href="https://wittikay.github.io/se_project_library_updated/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <span class="work__image"
+              ><img src="./images/library.svg" alt="" loading="lazy"
+            /></span>
+            <span class="work__name">Library</span
+            ><span class="work__arrow" aria-hidden="true">↗</span>
+          </a>
+          <a
+            class="work"
+            href="https://wittikay.github.io/se_project_coffeeshop/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <span class="work__image"
+              ><img
+                src="./images/logo_coffeeshop_dark.svg"
+                alt=""
+                loading="lazy"
+            /></span>
+            <span class="work__name">Coffeeshop</span
+            ><span class="work__arrow" aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="contact" id="contact">
+      <span class="contact__label">Contact</span>
+      <nav class="contact__links" aria-label="Contact and profile links">
+        <a
+          href="https://soundcloud.com/wittikay"
+          target="_blank"
+          rel="noreferrer"
+          >SoundCloud <span aria-hidden="true">↗</span></a
+        >
+        <a href="https://github.com/wittikay" target="_blank" rel="noreferrer"
+          >GitHub <span aria-hidden="true">↗</span></a
+        >
+        <a
+          href="https://stackoverflow.com/users/21637883/wittikay"
+          target="_blank"
+          rel="noreferrer"
+          >Stack Overflow <span aria-hidden="true">↗</span></a
+        >
+        <a
+          href="https://www.linkedin.com/in/karl-wilson-673289191/"
+          target="_blank"
+          rel="noreferrer"
+          >LinkedIn <span aria-hidden="true">↗</span></a
+        >
+        <a
+          href="https://www.facebook.com/karl.wilson.754365"
+          target="_blank"
+          rel="noreferrer"
+          >Facebook <span aria-hidden="true">↗</span></a
+        >
+        <a
+          href="https://www.codewars.com/users/wittikay"
+          target="_blank"
+          rel="noreferrer"
+          >Codewars <span aria-hidden="true">↗</span></a
+        >
+      </nav>
+    </footer>
+  </body>
+</html>
