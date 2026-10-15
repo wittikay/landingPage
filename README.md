@@ -1,31 +1,25 @@
-# wittikay
+# Karl (wittikay) Wilson
 
-Live page: https://wittikay.github.io/landingPage/
+Live portfolio: https://wittikay.github.io/landingPage/
 
-A compact portfolio page for Wittikay's work and profile links. It features a night-city photograph, the Wittikay logo, three project links, and a simple contact bar.
+Karl's IT experience, FactoryMemory project, and music, with compact layouts, muted blue light/dark themes, the personal k-arrow mark, and Wittikay's artist logo.
 
-## Projects
+## Website
 
-- [Spots](https://wittikay.github.io/se_project_spots/)
-- [Library](https://wittikay.github.io/se_project_library_updated/)
-- [Coffeeshop](https://wittikay.github.io/se_project_coffeeshop/)
+This is a static site with no build step, external fonts, embeds, or tracking. GitHub Pages publishes from the root of `main`. `.nojekyll` serves the files directly. Relative asset URLs support both `/landingPage/` and a local root.
 
-The contact bar links to SoundCloud, GitHub, Stack Overflow, LinkedIn, Facebook, and Codewars.
+- `index.html` and `styles.css`: content, responsive layouts, and styling.
+- `portfolio.mjs`: audience filters and project stories.
+- `app.mjs` and `navigation.mjs`: site controls and dialog navigation.
+- `theme.js`: device/saved theme selection and the light/dark switch.
+- `saturn.mjs` and `motion.mjs`: fixed-axis Saturn rotation, independently moving rings, and Play/Pause. Reduced-motion preferences start it paused.
+- `favicon.svg`: personal k-arrow mark.
+- `wittikay-logo.png`: supplied artist emblem, used in the music section.
 
-## Built With
+FactoryMemory is presented at the level of purpose and workflow. Its source code and technical implementation are not part of this repository.
 
-- HTML and CSS
-- Google Fonts: Manrope and DM Mono
-- GitHub Pages
+The previous portfolio remains recoverable in Git history. Existing legacy demos and their assets have been retained.
 
-The layout adapts to mobile, supports reduced-motion preferences, and uses local logo and project-mark assets. The hero photograph and fonts load from external services.
+## Local preview
 
-## Local Preview
-
-There is no build step. From the repository root, run:
-
-```sh
-python3 -m http.server 4173
-```
-
-Then open http://localhost:4173.
+From the repository root, run `python3 -m http.server 4173`, then open http://localhost:4173/.
