@@ -90,10 +90,10 @@ $('#copy-email').addEventListener('click', async () => {
   const status = $('#copy-status');
   try {
     if (!navigator.clipboard?.writeText) throw new Error('Clipboard unavailable');
-    await navigator.clipboard.writeText('karl122701@gmail.com');
+    await navigator.clipboard.writeText('karl.m.wilson@outlook.com');
     status.textContent = 'Copied! I’d be glad to hear from you.';
   } catch {
-    status.textContent = 'Couldn’t copy it automatically. Tap the email link or copy karl122701@gmail.com.';
+    status.textContent = 'Couldn’t copy it automatically. Tap the email link or copy karl.m.wilson@outlook.com.';
   }
 });
 
